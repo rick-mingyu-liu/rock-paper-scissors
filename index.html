@@ -9,18 +9,14 @@
 
   <body>
     <p class="title">Rock Paper Scissors</p>
-    <button onclick="
-        playGame('rock');
-    "class="move-button" >
-    <img class="move-icon" src="images/rock-emoji.png"></button>
+    <button class="move-button js-rock-button" >
+      <img class="move-icon" src="images/rock-emoji.png"></button>
 
-    <button onclick="
-        playGame('paper');
-    "class="move-button"><img class="move-icon" src="images/paper-emoji.png"></button>
+    <button class="move-button js-paper-button">
+      <img class="move-icon" src="images/paper-emoji.png"></button>
 
-    <button onclick="
-        playGame('scissors');
-    "class="move-button"><img class="move-icon" src="images/scissors-emoji.png"></button>
+    <button class="move-button js-scissors-button">
+      <img class="move-icon" src="images/scissors-emoji.png"></button>
 
     <p class="result result-css"></p>
 
@@ -28,13 +24,9 @@
 
     <p class="js-score score"></p>
 
-    <button onclick="
-        score.loses = 0;
-        score.wins = 0;
-        score.ties = 0;
-        localStorage.removeItem('score');
-        updateScore();
-    " class="reset-score-button">Reset Score</button>
+    <button class="reset-score-button js-reset-score-button">Reset Score</button>
+
+    <button class="auto-play-button js-auto-play-button"> Auto Play</button>
 
     <script src="scripts/rock-paper-scissors.js"></script>
   </body>
