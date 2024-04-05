@@ -6,14 +6,63 @@ let score = JSON.parse(localStorage.getItem('score')) || {
 
 updateScore();
 
+let isAutoPlay = false;
+let intervalId;
 
-// if (!score) {
-//     score = {
-//         wins: 0,
-//         loses: 0,
-//         ties: 0
-//     }
-// }
+function autoplay() {
+    if (!isAutoPlay) {
+        intervalId = setInterval(() => {
+            const playerMove = pickComputerMove();
+            playGame(playerMove);
+        }, 1000)
+        isAutoPlay = true;
+    } else {
+        clearInterval(intervalId);
+        isAutoPlay = false;
+    } 
+}
+
+document.querySelector('.js-rock-button')
+    .addEventListener('click', () => {
+        playGame('rock');
+    });
+
+document.querySelector('.js-paper-button')
+    .addEventListener('click', () => {
+        playGame('paper');
+    });
+
+document.querySelector('.js-scissors-button')
+    .addEventListener('click', () => {
+        playGame('scissors');
+    });
+
+document.querySelector('.js-auto-play-button')
+    .addEventListener('click', () => {
+        autoplay();
+    });
+
+document.querySelector('.js-reset-score-button')
+    .addEventListener('click', () => {
+        score.loses = 0;
+        score.wins = 0;
+        score.ties = 0;
+        localStorage.removeItem('score');
+        updateScore();
+    });
+
+
+document.body.addEventListener('keydown', (event) => {
+    if (event.key === 'r') {
+        playGame('rock');
+    } else if (event.key === 'p') {
+        playGame('paper');
+    } else if (event.key === 's') {
+        playGame('scissors');
+    }
+});
+
+
 
 function playGame(playerMove) {
 const computerMove = pickComputerMove();
@@ -82,17 +131,16 @@ document.querySelector('.js-score')
 }
 
 function pickComputerMove() {
+    let computerMove = ' ';
 
-let computerMove = ' ';
+    const randomNumber = Math.random();
 
-const randomNumber = Math.random();
-
-if (randomNumber >= 0 && randomNumber < 1 / 3) {
-computerMove = 'rock';
-} else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
-computerMove = 'paper';
-} else {
-computerMove = 'scissors';
-}
-return computerMove;
+    if (randomNumber >= 0 && randomNumber < 1 / 3) {
+        computerMove = 'rock';
+    } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+        computerMove = 'paper';
+    } else {
+        computerMove = 'scissors';
+    }
+        return computerMove;
 }
