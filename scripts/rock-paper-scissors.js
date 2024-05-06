@@ -87,7 +87,7 @@ if (playerMove === 'scissors') {
         result = 'You Lose'
     }
 
-} else {
+} else if (playerMove === 'rock') {
     if (computerMove === 'rock') {
         result = 'Tie'
     } else if (computerMove === 'paper') {
