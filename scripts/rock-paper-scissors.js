@@ -91,9 +91,9 @@ if (playerMove === 'scissors') {
     if (computerMove === 'rock') {
         result = 'Tie'
     } else if (computerMove === 'paper') {
-        result = 'You Win'
+        result = 'You Lose'
     } else {
-        result = 'You lose'
+        result = 'You Win'
     }
 }
 
